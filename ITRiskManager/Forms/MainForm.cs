@@ -18,21 +18,24 @@ namespace ITRiskManager
             InitializeComponent();
         }
 
+        // Varlık yönetimi formunu açar
         private void btnAsset_Click(object sender, EventArgs e)
         {
-            AssetForm assetForm=new AssetForm();
+            AssetForm assetForm = new AssetForm();
             assetForm.Show();
         }
 
+        // Risk değerlendirme formunu açar
         private void btnRisk_Click(object sender, EventArgs e)
         {
-            RiskForm riskForm=new RiskForm();
+            RiskForm riskForm = new RiskForm();
             riskForm.Show();
         }
 
+        // Rapor formunu açar
         private void btnReport_Click(object sender, EventArgs e)
         {
-            ReportForm reportForm=new ReportForm();
+            ReportForm reportForm = new ReportForm();
             reportForm.Show();
         }
     }

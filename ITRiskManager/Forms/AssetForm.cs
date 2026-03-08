@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace ITRiskManager.Forms
 {
+    //Varlık Yönetim Ekranı
     public partial class AssetForm : Form
     {
         public AssetForm()
@@ -21,11 +22,13 @@ namespace ITRiskManager.Forms
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
+            //Girdi kontrolü
             if(txtAssetName.Text=="" || txtAssetType.Text=="" || txtAssetOwner.Text == "")
             {
                 MessageBox.Show("Lütfen tüm alanları doldurun!");
                 return;
             }
+            //Sayısal veri kontrolü
             int CriticalityScore;
             if(!int.TryParse(txtCriticalityScore.Text, out CriticalityScore))
             {
@@ -37,6 +40,7 @@ namespace ITRiskManager.Forms
                 MessageBox.Show("Kritiklik skoru 1 ve 5 arasında olmalıdır!");
                 return;
             }
+            //Database kayıt işlemi
             SqlConnection con= DatabaseHelper.GetConnection();
             con.Open();
             string query = "INSERT INTO Assets (AssetName, AssetType, AssetOwner, CriticalityScore) " +
@@ -47,7 +51,7 @@ namespace ITRiskManager.Forms
             cmd.Parameters.AddWithValue("@AssetOwner", txtAssetOwner.Text);
             cmd.Parameters.AddWithValue("@CriticalityScore", CriticalityScore);
 
-            // 5. Çalıştır
+            // Çalıştır
             cmd.ExecuteNonQuery();
             con.Close();
 
@@ -59,7 +63,7 @@ namespace ITRiskManager.Forms
             txtCriticalityScore.Clear();
             LoadAssets();
         }
-
+        //Veri tabanındakki varlıkları tabloya ekler
         private void LoadAssets()
         {
             SqlConnection con= DatabaseHelper.GetConnection();
